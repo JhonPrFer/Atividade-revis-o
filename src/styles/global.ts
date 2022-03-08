@@ -11,6 +11,10 @@ export const GlobalStyles = styled.createGlobalStyle`
     box-sizing: border-box;
   }
 
+  * {
+    font-size: 10px;
+    font-family: 'monstserrat', sans-serif;
+  }
   /* Remove default margin */
   body,
   h1,
