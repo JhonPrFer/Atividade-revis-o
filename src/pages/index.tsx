@@ -4,6 +4,7 @@ import Day from '@/components/Day/Day'
 import NumbersPage from '@/components/NumbersPage/NumbersPage'
 import Logo from '@/public/Images/Logo'
 import Sidebar from '@/public/Images/Sidebar'
+import * as S from '@/styles/HomeStyled'
 import { Contests } from '@/types/Contests'
 
 function Home() {
@@ -19,6 +20,8 @@ function Home() {
 
   const lotteryName = (loterry: string) => {
     switch (loterry) {
+      case '2359':
+        return 'Mega-Sena'
       case '5534':
         return 'Quina'
       case '2200':
@@ -35,27 +38,32 @@ function Home() {
   }
 
   return contests ? (
-    <div>
-      <select
-        name="lotteries"
-        id="lotteries"
-        defaultValue={lottery}
-        onChange={e => setLottery(e.target.value)}
-      >
-        <option value="2359">Mega-Sena</option>
-        <option value="5534">Quina</option>
-        <option value="2200">Lotofácil</option>
-        <option value="2167">Lotomania</option>
-        <option value="1622">Timemania</option>
-        <option value="440">Dia de Sorte</option>
-      </select>
-      <span>
-        <Logo /> {`${lotteryName(lottery)} `}
-      </span>
-      <Day lottery={lottery} />
-      <Sidebar />
-      <NumbersPage lottery={lottery} />
-    </div>
+    <S.Wrapper>
+      <S.Home>
+        <S.Aside className={`aside${lottery}`}>
+          <S.Select
+            name="lotteries"
+            id="lotteries"
+            defaultValue={lottery}
+            onChange={e => setLottery(e.target.value)}
+          >
+            <S.Option value="2359">Mega-Sena</S.Option>
+            <S.Option value="5534">Quina</S.Option>
+            <S.Option value="2200">Lotofácil</S.Option>
+            <S.Option value="2167">Lotomania</S.Option>
+            <S.Option value="1622">Timemania</S.Option>
+            <S.Option value="440">Dia de Sorte</S.Option>
+          </S.Select>
+          <S.Logo>
+            <Logo />
+            <S.Name>{`${lotteryName(lottery)} `}</S.Name>
+          </S.Logo>
+          <Day lottery={lottery} />
+          <Sidebar />
+        </S.Aside>
+        <NumbersPage lottery={lottery} />
+      </S.Home>
+    </S.Wrapper>
   ) : (
     <p>A</p>
   )
